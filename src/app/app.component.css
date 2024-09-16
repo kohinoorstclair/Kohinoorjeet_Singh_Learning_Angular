@@ -1,0 +1,28 @@
+
+.product-card {
+  background:lightblue;
+  border: 1px solid black;
+  padding: 15px;
+  margin: 16px;
+  border-radius: 5px;
+  width: 20%;
+  float:left;
+  box-shadow: 2px 2px 12px rgba(0, 0, 20, 20);
+}
+h1{
+  font-size: 100px;
+  color: #007bff;
+}
+
+h2 {
+  font-size: 1.5em;
+  color: red;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.product-card p  {
+  color: #007bff;
+}
