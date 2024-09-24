@@ -1,8 +1,9 @@
 export interface Product {
-  productId: string;
+  productId: number;
   name: string;
   price: number;
   brand: string;
   description: string;
-  stock?: number;  // Optional property
+  stock?: number // Optional property
 }
+
