@@ -9,5 +9,5 @@ import {Product} from "../Shared/Modules/product";
   styleUrl: './product-list-item.component.css'
 })
 export class ProductListItemComponent {
-  @Input() product?: Product;
+  @Input() product?: any;
 }
