@@ -1,8 +1,12 @@
-<div class="content-list-item">
-  <h2>{{ product.name }}</h2>
-  <p><b>Product ID:</b> {{ product.productId }}</p>
- <strong>Brand:</strong> {{ product.brand }}
-  <b>Price:</b> ${{ product.price }}
-  <b>Description:</b> {{ product.description }}y
-  <p *ngIf="!product.stock"><b>Stock:</b> {{ product.stock }}</p>
+<div class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'red' : 'teal'}">
+  <div class="content-left">
+    <h2>{{ product?.name }}</h2>
+    <p>{{ product?.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+    <p>Brand: {{ product?.brand }}</p>
+    <p *ngIf="product?.stock">Stock: {{ product?.stock }}</p>
+  </div>
+  <div class="content-right">
+    <img [src]="product.url" alt="{{ product?.name }}" class="product-image">
+  </div>
 </div>

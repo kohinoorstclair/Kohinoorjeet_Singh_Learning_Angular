@@ -1,7 +1,29 @@
-.content-list-item {
-  border: 2px solid black;
-padding :5px;
+.product-list-item {
+  border: 2px solid red;
   margin-bottom: 15px;
 
+}
 
+.content-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid black;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.content-left {
+  flex-grow: 1; /* Takes up available space */
+}
+
+.content-right {
+  flex-shrink: 0; /* Prevents the image from shrinking */
+}
+
+.product-image {
+  width: 150px; /* Adjust the size as needed */
+  height: auto;
+  object-fit: cover; /* Ensures the image maintains its aspect ratio */
+  border-radius: 8px;
 }

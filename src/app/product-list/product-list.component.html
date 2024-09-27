@@ -1,8 +1,5 @@
-<div class="content-list">
-
-  <app-product-list-item [product]="products[0]">
+<div  *ngFor="let product of products; let i = index" class="contentList">
+  <app-product-list-item
+    [product]="product" [index]="i">
   </app-product-list-item>
-  <app-product-list-item [product]="products[1]"></app-product-list-item>
-  <app-product-list-item [product]="products[2]"></app-product-list-item>
-  <app-product-list-item [product]="products[3]"></app-product-list-item>
 </div>

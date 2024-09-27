@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   brand: string;
   description: string;
-  stock?: number // Optional property
+  stock?: number ;// Optional property
+  url?:string;
 }
 
