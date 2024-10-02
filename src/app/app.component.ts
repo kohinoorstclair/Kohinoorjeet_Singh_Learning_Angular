@@ -31,4 +31,9 @@ export class AppComponent {
     });
   }
 
+
+  onProductSelected(product: any) {
+    this.selectedProduct = product;
+  }
+
 }

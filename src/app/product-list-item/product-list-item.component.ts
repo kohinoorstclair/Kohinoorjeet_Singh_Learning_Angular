@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../Shared/Modules/product";
 import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
 
@@ -16,4 +16,9 @@ import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
 export class ProductListItemComponent {
   @Input() product?: any;
   @Input() index?: number=0;
+  @Output() selectProduct = new EventEmitter<any>();
+
+  onSelectProduct() {
+    this.selectProduct.emit(this.product);
+  }
 }

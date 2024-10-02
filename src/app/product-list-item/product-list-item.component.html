@@ -1,4 +1,4 @@
-<div class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'white' : 'lightgrey'}">
+<div class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'white' : 'lightgrey'}" (click)="onSelectProduct()">
   <div class="content-left">
     <h2>{{ product?.name }}</h2>
     <p>{{ product?.description }}</p>

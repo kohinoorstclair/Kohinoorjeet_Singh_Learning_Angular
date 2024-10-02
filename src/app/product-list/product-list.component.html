@@ -1,5 +1,7 @@
-<div  *ngFor="let product of products; let i = index" class="contentList">
+<div *ngFor="let product of products; let i = index" class="contentList">
   <app-product-list-item
-    [product]="product" [index]="i">
+    [product]="product"
+    [index]="i"
+    (selectProduct)="onProductSelect($event)">
   </app-product-list-item>
 </div>

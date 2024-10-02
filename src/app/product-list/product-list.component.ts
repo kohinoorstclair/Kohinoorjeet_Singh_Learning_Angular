@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Product} from '../Shared/Modules/product';
 import {ProductListItemComponent} from "../product-list-item/product-list-item.component";
 import {NgForOf} from "@angular/common";
@@ -18,6 +18,7 @@ import {products} from "../data/mock-content";
 })
 export class ProductListComponent {
   products: Product[] = [];
+  @Output() productSelected = new EventEmitter<any>();
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
@@ -29,4 +30,9 @@ export class ProductListComponent {
       },
     });
   }
+
+  onProductSelect(product: any) {
+    this.productSelected.emit(product); // Emit the selected product to the parent
+  }
+
 }

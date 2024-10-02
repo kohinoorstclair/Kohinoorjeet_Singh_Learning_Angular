@@ -10,8 +10,8 @@
 
   <app-product-list-item *ngIf="selectedProduct" [product]="selectedProduct"></app-product-list-item>
 
-
-  <app-product-list></app-product-list>
+  <!-- Product list -->
+  <app-product-list (productSelected)="onProductSelected($event)"></app-product-list>
 
 </div>
 
