@@ -7,8 +7,8 @@ import {Product} from "../Shared/Modules/product";
   providedIn: 'root'
 })
 export class ProductService {
-  private productList: Product[] = products;
 
+  private productList: Product[] = products;
   constructor() { }
 
   getProducts(): Observable<Product[]> {
