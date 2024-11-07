@@ -1,1 +1,47 @@
-<p>modify-list-item works!</p>
+
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <label for="productId">Product ID:</label>
+  <input id="productId" formControlName="productId" type="text" />
+  <div *ngIf="productForm.get('productId')?.invalid && productForm.get('productId')?.touched">
+    Product ID is required and should be a positive number.
+  </div>
+
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" type="text" />
+  <div *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
+    Name is required and should not contain special characters.
+  </div>
+
+  <label for="price">Price:</label>
+  <input id="price" formControlName="price" type="number" />
+  <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched">
+    Price is required and should be a non-negative number.
+  </div>
+
+  <label for="brand">Brand:</label>
+  <input id="brand" formControlName="brand" type="text" />
+  <div *ngIf="productForm.get('brand')?.invalid && productForm.get('brand')?.touched">
+    Brand is required.
+  </div>
+
+  <label for="description">Description:</label>
+  <textarea id="description" formControlName="description"></textarea>
+  <div *ngIf="productForm.get('description')?.invalid && productForm.get('description')?.touched">
+    Description is required.
+  </div>
+
+  <label for="stock">Stock:</label>
+  <input id="stock" formControlName="stock" type="number" />
+  <div *ngIf="productForm.get('stock')?.invalid && productForm.get('stock')?.touched">
+    Stock should be a non-negative number.
+  </div>
+
+  <label for="url">Image URL:</label>
+  <input id="url" formControlName="url" type="text" />
+  <div *ngIf="productForm.get('url')?.invalid && productForm.get('url')?.touched">
+    Please enter a valid image URL (must end in .jpg, .png, or .gif).
+  </div>
+
+  <button type="submit">Submit</button>
+</form>
