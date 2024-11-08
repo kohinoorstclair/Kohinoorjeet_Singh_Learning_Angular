@@ -29,7 +29,11 @@ export class ModifyListItemComponent implements OnInit {
   ) {
     this.productForm = this.formBuilder.group({
 
-
+      name: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(1)]],
+      brand: ['', Validators.required],
+      description: ['', Validators.required],
+      stock: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
