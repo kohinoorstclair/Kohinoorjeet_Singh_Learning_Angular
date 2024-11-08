@@ -12,10 +12,12 @@ import{ModifyListItemComponent} from "./app/modify-list-item/modify-list-item.co
 
 const routes: Routes = [
   { path: 'Products', component: ProductListComponent },
-  { path: 'Products/:id', component: ProductListItemComponent },
-  {path: 'modify-product', component: ModifyListItemComponent},
-  {path: '**', component:PageNotFoundComponent}
+  { path: 'modify-product', component: ModifyListItemComponent },
+  { path: 'modify-product/:id', component: ModifyListItemComponent },
+  { path: 'page-not-found', component: PageNotFoundComponent },
+  {path:'**' ,component:ProductListComponent}
 ];
+
 bootstrapApplication(AppComponent, {
   providers: [provideRouter(routes)]
 }).then(r => console.log('Bootstrap successful'))

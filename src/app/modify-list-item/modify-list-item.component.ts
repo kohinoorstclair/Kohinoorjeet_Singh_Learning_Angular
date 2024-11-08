@@ -1,42 +1,101 @@
-import {Component, OnInit} from '@angular/core';
-
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Product} from "../Shared/Modules/product";
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ProductService } from "../services/product.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Product } from "../Shared/Modules/product";
+import {NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-modify-list-item',
   standalone: true,
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgForOf
   ],
   templateUrl: './modify-list-item.component.html',
   styleUrls: ['./modify-list-item.component.css']
 })
 export class ModifyListItemComponent implements OnInit {
   productForm: FormGroup;
+  products: Product[] = [];
+  selectedProduct: Product | undefined;
+  isEditMode: boolean = false;
 
-  constructor(private fb: FormBuilder) {
-    this.productForm = this.fb.group({
-      productId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]], // Ensure ID is a positive number
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]+$')]], // No special characters
-      price: ['', [Validators.required, Validators.min(0)]], // Price must be a non-negative number
+  constructor(
+    private productService: ProductService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.productForm = this.formBuilder.group({
+
+      name: ['', Validators.required],
+      price: [0, [Validators.required, Validators.min(1)]],
       brand: ['', Validators.required],
       description: ['', Validators.required],
-      stock: ['', Validators.min(0)], // Stock should be non-negative if provided
-      url: ['', Validators.pattern(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/)] // URL validation for image
+      stock: [0, [Validators.required, Validators.min(0)]]
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const productId = +params['id'];
+      if (productId) {
+        this.isEditMode = true;
+        this.productService.getProductById(productId).subscribe((product) => {
+          if (product) {
+            this.selectedProduct = product;
+            this.populateForm(this.selectedProduct);
+          }
+        });
+      } else {
+        this.isEditMode = false;
+        this.productForm.reset();
+      }
+    });
 
-  onSubmit() {
-    if (this.productForm.valid) {
-      const product: Product = this.productForm.value;
-      console.log('Product submitted:', product);
-      this.productForm.reset(); // Reset form after submission
-    } else {
-      console.log('Form is invalid');
+
+}
+
+
+  populateForm(product: Product): void {
+    this.productForm.patchValue({
+      productId: product.productId, // Populate product ID
+      name: product.name,
+      price: product.price,
+      brand: product.brand,
+      description: product.description,
+      stock: product.stock
+    });
+  }
+
+
+
+  // Handle the form submission
+  onSubmit(): void {
+    if (this.productForm.invalid) {
+      return;
     }
+
+    const productData: Product = this.productForm.value;
+
+    if (this.isEditMode) {
+      // Update existing product
+      this.productService.updateProduct(productData).subscribe(() => {
+        this.router.navigate(['/Products']);
+      });
+    } else {
+      // Create new product
+      this.productService.addProduct(productData).subscribe(() => {
+        this.router.navigate(['/Products']);
+      });
+    }
+  }
+
+
+
+  // Reset form
+  onReset(): void {
+    this.productForm.reset();
   }
 }

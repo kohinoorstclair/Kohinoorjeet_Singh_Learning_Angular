@@ -2,28 +2,33 @@ import { Injectable } from '@angular/core';
 import { products } from '../data/mock-content';
 import {Observable, of} from "rxjs";
 import {Product} from "../Shared/Modules/product";
-
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
   private productList: Product[] = products;
+
   constructor() { }
 
+  // Get all products
   getProducts(): Observable<Product[]> {
     return of(this.productList);
   }
+
+  // Get a product by its ID
   getProductById(productId: number): Observable<Product | undefined> {
     const product = this.productList.find(product => product.productId === productId);
     return of(product);
   }
 
+  // Add a new product
   addProduct(newProduct: Product): Observable<Product[]> {
     this.productList.push(newProduct);
     return of(this.productList);
   }
 
+  // Update an existing product
   updateProduct(updatedProduct: Product): Observable<Product[]> {
     const index = this.productList.findIndex(product => product.productId === updatedProduct.productId);
     if (index !== -1) {
@@ -32,18 +37,10 @@ export class ProductService {
     return of(this.productList);
   }
 
+  // Remove a product
   removeProduct(productId: number): Observable<Product | undefined> {
     const productToRemove = this.productList.find(product => product.productId === productId);
     this.productList = this.productList.filter(product => product.productId !== productId);
     return of(productToRemove);
   }
 }
-
-
-
-
-
-
-
-
-
