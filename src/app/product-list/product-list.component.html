@@ -1,4 +1,8 @@
 <div *ngFor="let product of products; let i = index" class="contentList">
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <app-product-list-item
     [product]="product"
     [index]="i">

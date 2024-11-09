@@ -1,10 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Product} from '../Shared/Modules/product';
 import {ProductListItemComponent} from "../product-list-item/product-list-item.component";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import { ProductService } from '../services/product.service';
 import {products} from "../data/mock-content";
 import {Router} from "@angular/router";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -12,7 +13,8 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [
     ProductListItemComponent,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -20,27 +22,43 @@ import {Router} from "@angular/router";
 export class ProductListComponent  implements OnInit {
   products: Product[] = [];
 
+  errorMessage: string | null = null;
+
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe({
       next: (productData: Product[]) => {
         this.products = productData;
+        this.errorMessage = null;  // Clear any previous error messages
       },
+      error: (err) => {
+        console.error("Error fetching products", err);
+        this.errorMessage = "Failed to load products. Please try again later.";
+      }
     });
   }
 
-  // Navigate to modify-product page without product ID
-  // Updated onEdit method in ProductListComponent
+
+
+
   onEdit(productId: number): void {
-    this.router.navigate(['/modify-product', productId]);  // Pass productId to the modify-product page
+    this.router.navigate(['/modify-product', productId]);
   }
 
 
-  // Delete a product
+
   onDelete(productId: number): void {
-    this.productService.removeProduct(productId).subscribe(() => {
-      this.products = this.products.filter(product => product.productId !== productId);
+    this.productService.removeProduct(productId).subscribe({
+      next: () => {
+        this.products = this.products.filter(product => product.productId !== productId);
+        this.errorMessage = null;  // Clear any previous error messages
+      },
+      error: (err) => {
+        console.error("Error deleting product", err);
+        this.errorMessage = `Failed to delete product with ID ${productId}. Please try again.`;
+      }
     });
   }
+
 }

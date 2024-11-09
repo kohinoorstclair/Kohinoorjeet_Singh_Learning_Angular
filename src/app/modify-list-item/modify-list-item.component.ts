@@ -3,14 +3,16 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ProductService } from "../services/product.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from "../Shared/Modules/product";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-modify-list-item',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    NgForOf
+    NgForOf,
+    NgIf
   ],
   templateUrl: './modify-list-item.component.html',
   styleUrls: ['./modify-list-item.component.css']
@@ -72,25 +74,16 @@ export class ModifyListItemComponent implements OnInit {
 
 
   // Handle the form submission
+  errorMessage: string | null = null;
+
   onSubmit(): void {
-    if (this.productForm.invalid) {
-      return;
-    }
-
-    const productData: Product = this.productForm.value;
-
-    if (this.isEditMode) {
-      // Update existing product
-      this.productService.updateProduct(productData).subscribe(() => {
-        this.router.navigate(['/Products']);
-      });
-    } else {
-      // Create new product
-      this.productService.addProduct(productData).subscribe(() => {
-        this.router.navigate(['/Products']);
-      });
-    }
+    this.productService.updateProduct(this.productForm.value).subscribe({
+      next: () => this.router.navigate(['/Products']),
+      error: (err) => this.errorMessage = "Error updating product."
+    });
   }
+
+
 
 
 

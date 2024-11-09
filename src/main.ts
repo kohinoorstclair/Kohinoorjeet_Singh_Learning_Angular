@@ -1,23 +1,30 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
+import { provideRouter, Routes } from "@angular/router";
+import { provideHttpClient } from "@angular/common/http";
+import { importProvidersFrom } from "@angular/core";
+import { HttpClientInMemoryWebApiModule } from "angular-in-memory-web-api";
+import { InMemoryDataService } from "./app/services/in-memory-data.service";
 
-import { provideRouter, Routes} from "@angular/router";
+import { ProductListComponent } from "./app/product-list/product-list.component";
+import { ModifyListItemComponent } from "./app/modify-list-item/modify-list-item.component";
+import { PageNotFoundComponent } from "./app/page-not-found/page-not-found.component";
 
-import { ProductListComponent} from "./app/product-list/product-list.component";
-import { ProductListItemComponent} from "./app/product-list-item/product-list-item.component";
-import {PageNotFoundComponent} from "./app/page-not-found/page-not-found.component";
-import{ModifyListItemComponent} from "./app/modify-list-item/modify-list-item.component";
-
-
+// Define the routes
 const routes: Routes = [
   { path: 'Products', component: ProductListComponent },
   { path: 'modify-product', component: ModifyListItemComponent },
   { path: 'modify-product/:id', component: ModifyListItemComponent },
   { path: 'page-not-found', component: PageNotFoundComponent },
-  {path:'**' ,component:ProductListComponent}
+  { path: '**', component: PageNotFoundComponent } // Wildcard for unmatched routes
 ];
 
+// Bootstrap the Angular app
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)]
+  providers: [
+    provideHttpClient(), // HTTP client configuration
+    provideRouter(routes), // Router configuration
+    importProvidersFrom(HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 1000 })) // Use importProvidersFrom
+  ]
 }).then(r => console.log('Bootstrap successful'))
+  .catch(err => console.error(err));

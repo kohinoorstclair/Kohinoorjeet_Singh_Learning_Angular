@@ -1,4 +1,8 @@
 <div class="modify-list-item">
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
   <h1>{{ isEditMode ? 'Edit Product' : 'Create Product' }}</h1>
 
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">

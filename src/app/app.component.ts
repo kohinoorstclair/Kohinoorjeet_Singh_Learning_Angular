@@ -5,6 +5,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ProductListComponent} from "./product-list/product-list.component";
 import {ProductListItemComponent} from "./product-list-item/product-list-item.component";
 import {ProductService} from "./services/product.service";
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
