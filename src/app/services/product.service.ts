@@ -2,45 +2,36 @@ import { Injectable } from '@angular/core';
 import { products } from '../data/mock-content';
 import {Observable, of} from "rxjs";
 import {Product} from "../Shared/Modules/product";
+import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
   private productList: Product[] = products;
+  private apiUrl = 'api/products';
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
 
-  // Get all products
   getProducts(): Observable<Product[]> {
-    return of(this.productList);
+    return this.http.get<Product[]>(this.apiUrl);
   }
 
-  // Get a product by its ID
   getProductById(productId: number): Observable<Product | undefined> {
-    const product = this.productList.find(product => product.productId === productId);
-    return of(product);
+    return this.http.get<Product>(`${this.apiUrl}/${productId}`);
   }
 
-  // Add a new product
-  addProduct(newProduct: Product): Observable<Product[]> {
-    this.productList.push(newProduct);
-    return of(this.productList);
+  addProduct(newProduct: Product): Observable<Product> {
+    return this.http.post<Product>(this.apiUrl, newProduct);
   }
 
-  // Update an existing product
-  updateProduct(updatedProduct: Product): Observable<Product[]> {
-    const index = this.productList.findIndex(product => product.productId === updatedProduct.productId);
-    if (index !== -1) {
-      this.productList[index] = updatedProduct;
-    }
-    return of(this.productList);
+  updateProduct(updatedProduct: Product): Observable<Product> {
+    return this.http.put<Product>(`${this.apiUrl}/${updatedProduct.productId}`, updatedProduct);
   }
 
-  // Remove a product
-  removeProduct(productId: number): Observable<Product | undefined> {
-    const productToRemove = this.productList.find(product => product.productId === productId);
-    this.productList = this.productList.filter(product => product.productId !== productId);
-    return of(productToRemove);
+  removeProduct(productId: number): Observable<Product> {
+    return this.http.delete<Product>(`${this.apiUrl}/${productId}`);
   }
 }
