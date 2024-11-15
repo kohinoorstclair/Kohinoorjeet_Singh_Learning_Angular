@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../Shared/Modules/product";
-import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
+import {CurrencyPipe, NgIf, NgOptimizedImage, NgStyle, PercentPipe, UpperCasePipe} from "@angular/common";
 
 @Component({
   selector: 'app-product-list-item',
@@ -8,7 +8,10 @@ import {NgIf, NgOptimizedImage, NgStyle} from "@angular/common";
   imports: [
     NgIf,
     NgStyle,
-    NgOptimizedImage
+    NgOptimizedImage,
+    UpperCasePipe,
+    CurrencyPipe,
+    PercentPipe
   ],
   templateUrl: './product-list-item.component.html',
   styleUrl: './product-list-item.component.css'

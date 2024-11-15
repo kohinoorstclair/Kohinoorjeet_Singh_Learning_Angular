@@ -1,10 +1,10 @@
 <div class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'white' : 'lightgrey'}" (click)="onSelectProduct()">
   <div class="content-left">
-    <h2>{{ product?.name }}</h2>
-    <p>{{ product?.description }}</p>
-    <p>Price: ${{ product.price }}</p>
+    <h2>{{ product?.name | uppercase}}</h2>
+    <p>{{ product?.description  }}</p>
+    <p>Price: {{ product.price| currency: 'CAD' }}</p>
     <p>Brand: {{ product?.brand }}</p>
-    <p *ngIf="product?.stock">Stock: {{ product?.stock }}</p>
+    <p *ngIf="product?.stock">Stock: {{ product?.stock | percent }}  of the required inventory</p>
   </div>
   <div class="content-right">
     <img [src]="product.url" alt="{{ product?.name }}" class="product-image">
