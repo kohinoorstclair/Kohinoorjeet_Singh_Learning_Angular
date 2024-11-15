@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../Shared/Modules/product";
 import {CurrencyPipe, NgIf, NgOptimizedImage, NgStyle, PercentPipe, UpperCasePipe} from "@angular/common";
 import {ModelCombinePipe} from "../model-combine.pipe";
+import {ColorTextPipe} from "../color-text.pipe";
 
 @Component({
   selector: 'app-product-list-item',
@@ -13,7 +14,8 @@ import {ModelCombinePipe} from "../model-combine.pipe";
     UpperCasePipe,
     CurrencyPipe,
     PercentPipe,
-    ModelCombinePipe
+    ModelCombinePipe,
+    ColorTextPipe
   ],
   templateUrl: './product-list-item.component.html',
   styleUrl: './product-list-item.component.css'

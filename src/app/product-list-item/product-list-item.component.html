@@ -5,6 +5,8 @@
     <p>Price: {{ product.price| currency: 'CAD' }}</p>
     <p>model : brand :-> {{product| modelCombine}}</p>
     <p *ngIf="product?.stock">Stock: {{ product?.stock | percent }}  of the required inventory</p>
+    <p>bonus stock: <span [innerHTML]="product | colorText"></span></p>
+
   </div>
   <div class="content-right">
     <img [src]="product.url" alt="{{ product?.name }}" class="product-image">
