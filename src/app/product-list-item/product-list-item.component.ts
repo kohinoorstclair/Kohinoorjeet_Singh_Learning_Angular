@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Product} from "../Shared/Modules/product";
 import {CurrencyPipe, NgIf, NgOptimizedImage, NgStyle, PercentPipe, UpperCasePipe} from "@angular/common";
+import {ModelCombinePipe} from "../model-combine.pipe";
 
 @Component({
   selector: 'app-product-list-item',
@@ -11,7 +12,8 @@ import {CurrencyPipe, NgIf, NgOptimizedImage, NgStyle, PercentPipe, UpperCasePip
     NgOptimizedImage,
     UpperCasePipe,
     CurrencyPipe,
-    PercentPipe
+    PercentPipe,
+    ModelCombinePipe
   ],
   templateUrl: './product-list-item.component.html',
   styleUrl: './product-list-item.component.css'

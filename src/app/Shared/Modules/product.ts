@@ -3,6 +3,7 @@ export interface Product {
   name: string;
   price: number;
   brand: string;
+  model:string;
   description: string;
   stock?: number ;// Optional property
   url?:string;
