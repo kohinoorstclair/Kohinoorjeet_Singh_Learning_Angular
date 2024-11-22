@@ -6,6 +6,7 @@ import { ProductService } from '../services/product.service';
 import {products} from "../data/mock-content";
 import {Router} from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
+import {HoverHighlightDirective} from "../hover-highlight.directive";
 
 
 @Component({
@@ -14,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     ProductListItemComponent,
     NgForOf,
-    NgIf
+    NgIf,
+    HoverHighlightDirective
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'

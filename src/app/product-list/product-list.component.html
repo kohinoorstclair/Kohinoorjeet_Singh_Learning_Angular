@@ -8,7 +8,7 @@
     [index]="i">
 
   </app-product-list-item>
-  <button (click)="onEdit(product.productId)">Edit</button>
+  <button (click)="onEdit(product.productId)"  appHoverHighlight [hoverColor]="'orange'">Edit</button>
 
-  <button (click)="onDelete(product.productId)">Delete</button>
+  <button (click)="onDelete(product.productId)"  appHoverHighlight [hoverColor]="'orange'">Delete</button>
 </div>
