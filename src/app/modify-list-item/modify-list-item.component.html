@@ -10,17 +10,17 @@
 
     <div class="form-group">
       <label for="name">Product Name</label>
-      <input id="name" formControlName="name" type="text" [readonly]="isEditMode">
+      <input id="name" formControlName="name" type="text" [readonly]="isEditMode" appHighlightOnFocus [focusColor]="'white'" >
     </div>
 
     <div class="form-group">
       <label for="price">Price</label>
-      <input id="price" formControlName="price" type="number">
+      <input id="price" formControlName="price" type="number" appHighlightOnFocus [focusColor]="'lightblue'">
     </div>
 
     <div class="form-group">
       <label for="brand">Brand</label>
-      <input id="brand" formControlName="brand" type="text">
+      <input id="brand" formControlName="brand" type="text" appHighlightOnFocus [focusColor]="'lightblue'">
     </div>
 
     <div class="form-group">
@@ -30,7 +30,7 @@
 
     <div class="form-group">
       <label for="stock">Stock</label>
-      <input id="stock" formControlName="stock" type="number">
+      <input id="stock" formControlName="stock" type="number" appHighlightOnFocus [focusColor]="'lightblue'">
     </div>
 
     <div class="form-actions">

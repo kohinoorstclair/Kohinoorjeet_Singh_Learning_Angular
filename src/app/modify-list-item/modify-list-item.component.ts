@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Product } from "../Shared/Modules/product";
 import {NgForOf, NgIf} from "@angular/common";
 import { HttpClientModule } from '@angular/common/http';
+import {HighlightOnFocusDirective} from "../highlight-on-focus.directive";
 
 @Component({
   selector: 'app-modify-list-item',
@@ -12,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     ReactiveFormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    HighlightOnFocusDirective
   ],
   templateUrl: './modify-list-item.component.html',
   styleUrls: ['./modify-list-item.component.css']
