@@ -1,7 +1,13 @@
 <script src="../../main.ts"></script>
 <div appHoverHighlight [hoverColor]="'pink'" class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'white' : 'lightgrey'}" (click)="onSelectProduct()">
   <div class="content-left">
-    <h2>{{ product?.name | uppercase}}</h2>
+    <span
+      [appShowDetailsOnHover]="'ID: ' + product.productId + ', Description: ' + product.description"
+      style="text-decoration: underline; color: blue; cursor: pointer;"
+    >
+      <h2>{{ product?.name | uppercase}}</h2>
+  </span>
+
     <p>{{ product?.description  }}</p>
     <p>Price: {{ product.price| currency: 'CAD' }}</p>
     <p>model : brand :-> {{product| modelCombine}}</p>
