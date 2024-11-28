@@ -11,7 +11,7 @@ import {ModifyListItemComponent} from "./app/modify-list-item/modify-list-item.c
 const routes: Routes = [
   { path: '', component: AppComponent },
   { path: 'Products', loadComponent: () => import('./app/product-list/product-list.component').then(m => m.ProductListComponent) },
-  { path: 'modify-product',component:ModifyListItemComponent },
+  { path: 'modify-product',component:ModifyListItemComponent  },
   { path: 'modify-product/:id', loadComponent: () => import('./app/modify-list-item/modify-list-item.component').then(m => m.ModifyListItemComponent) },
   { path: '**', loadComponent: () => import('./app/page-not-found/page-not-found.component').then(m => m.PageNotFoundComponent) }
 ];
