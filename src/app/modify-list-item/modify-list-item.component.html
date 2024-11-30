@@ -1,43 +1,86 @@
 <div class="modify-list-item">
   <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
+    <mat-card class="error-card">{{ errorMessage }}</mat-card>
   </div>
 
-  <h1>{{ isEditMode ? 'Edit Product' : 'Create Product' }}</h1>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ isEditMode ? 'Edit Product' : 'Create Product' }}</mat-card-title>
+    </mat-card-header>
+<br>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="form-group">
+        <mat-label>Product Name</mat-label>
+        <input
+          matInput
+          id="name"
+          formControlName="name"
+          type="text"
+          [readonly]="isEditMode"
+          appHighlightOnFocus
+          [focusColor]="'white'"
+        />
+      </mat-form-field>
 
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <mat-form-field  class="form-group">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          id="price"
+          formControlName="price"
+          type="number"
+          appHighlightOnFocus
+          [focusColor]="'lightblue'"
+        />
+      </mat-form-field>
 
+      <mat-form-field appearance="fill" class="form-group">
+        <mat-label>Brand</mat-label>
+        <input
+          matInput
+          id="brand"
+          formControlName="brand"
+          type="text"
+          appHighlightOnFocus
+          [focusColor]="'lightblue'"
+        />
+      </mat-form-field>
 
-    <div class="form-group">
-      <label for="name">Product Name</label>
-      <input id="name" formControlName="name" type="text" [readonly]="isEditMode" appHighlightOnFocus [focusColor]="'white'" >
-    </div>
+      <mat-form-field appearance="fill" class="form-group">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          id="description"
+          formControlName="description"
+          rows="3"
+        ></textarea>
+      </mat-form-field>
 
-    <div class="form-group">
-      <label for="price">Price</label>
-      <input id="price" formControlName="price" type="number" appHighlightOnFocus [focusColor]="'lightblue'">
-    </div>
+      <mat-form-field appearance="fill" class="form-group">
+        <mat-label>Stock</mat-label>
+        <input
+          matInput
+          id="stock"
+          formControlName="stock"
+          type="number"
+          appHighlightOnFocus
+          [focusColor]="'lightblue'"
+        />
+      </mat-form-field>
 
-    <div class="form-group">
-      <label for="brand">Brand</label>
-      <input id="brand" formControlName="brand" type="text" appHighlightOnFocus [focusColor]="'lightblue'">
-    </div>
-
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" formControlName="description"></textarea>
-    </div>
-
-    <div class="form-group">
-      <label for="stock">Stock</label>
-      <input id="stock" formControlName="stock" type="number" appHighlightOnFocus [focusColor]="'lightblue'">
-    </div>
-
-    <div class="form-actions">
-      <button type="submit" [disabled]="productForm.invalid">
-        {{ isEditMode ? 'Save Changes' : 'Create Product' }}
-      </button>
-      <button type="button" (click)="onReset()">Reset</button>
-    </div>
-  </form>
+      <div class="form-actions">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="productForm.invalid"
+        >
+          {{ isEditMode ? 'Save Changes' : 'Create Product' }}
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="onReset()">
+          Reset
+        </button>
+      </div>
+    </form>
+  </mat-card>
 </div>

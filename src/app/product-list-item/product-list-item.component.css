@@ -57,3 +57,12 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  background-color: #e0e0e0;
+}

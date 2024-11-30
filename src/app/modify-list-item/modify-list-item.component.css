@@ -1,90 +1,95 @@
-/* Ensure the form and background are styled properly */
+
 .modify-list-item {
-  background-color: #333;  /* Dark background for contrast */
+  background-color: #f5f5f5;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 600px;
-  margin: 0 auto;
-  color: white;  /* Text color for the entire form */
+  margin: 20px auto;
 }
 
-/* Style the form title */
-.modify-list-item h1 {
+
+mat-card {
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+
+mat-card.error-card {
+  background-color: #ffcdd2;
+  color: #b71c1c;
   text-align: center;
   margin-bottom: 20px;
-  font-size: 24px;
-  color: white; /* Ensure the heading is white */
-}
-
-/* Style form fields and labels */
-.modify-list-item label {
-  display: block;
-  margin: 10px 0 5px;
-  font-size: 16px;
-  color: white;
-}
-
-.modify-list-item input,
-.modify-list-item select {
-  width: 100%;
   padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: #444;
-  color: white;
 }
 
-.modify-list-item input:focus,
-.modify-list-item select:focus {
-  border-color: #009688;
-  outline: none;
-  background-color: #555;
-}
-
-/* Button Styles */
-.modify-list-item button {
-  background-color: #009688; /* A nice teal color */
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
+/* Form Field Styling */
+mat-form-field {
   width: 100%;
-  margin-top: 10px;
+  margin-bottom: 5px;
 }
 
-.modify-list-item button:hover {
-  background-color: #00796b; /* Darker teal on hover */
+mat-form-field.mat-form-field-appearance-fill {
+  background-color: #f9f9f9;
+  border-radius: 2px;
 }
 
-.modify-list-item button:disabled {
-  background-color: #888; /* Disabled button style */
+/* Focus State for Inputs */
+.mat-form-field.mat-focused .mat-form-field-flex {
+  background-color: #e3f2fd;
+  border-radius: 2px;
+}
+
+/* Buttons Styling */
+button[mat-raised-button] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+button[mat-raised-button][color="primary"] {
+  background-color: #1976d2;
+  color: #ffffff;
+}
+
+button[mat-raised-button][color="primary"]:hover {
+  background-color: #1565c0;
+}
+
+button[mat-raised-button][color="warn"] {
+  background-color: #d32f2f; /* Warn red */
+  color: #ffffff;
+}
+
+button[mat-raised-button][color="warn"]:hover {
+  background-color: #b71c1c;
+}
+
+/* Disabled Buttons */
+button[mat-raised-button]:disabled {
+  background-color: #cccccc;
+  color: #666666;
   cursor: not-allowed;
 }
 
-/* Add spacing between inputs and buttons */
-.modify-list-item .form-group {
-  margin-bottom: 20px;
-}
 
-/* Center content inside buttons, labels and inputs */
-.modify-list-item .content-left {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Add some spacing at the bottom of the form */
-.modify-list-item .form-actions {
+.form-actions {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-top: 20px;
 }
 
-/* If the form is invalid, highlight the form fields */
-.modify-list-item .ng-invalid.ng-touched {
-  border: 2px solid red;
+/* Responsive Design */
+@media (max-width: 600px) {
+  .modify-list-item {
+    padding: 10px;
+  }
+
+  button[mat-raised-button] {
+    font-size: 14px;
+  }
 }

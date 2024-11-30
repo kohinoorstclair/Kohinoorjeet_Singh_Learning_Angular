@@ -1,23 +1,37 @@
 <script src="../../main.ts"></script>
+
 <div appHoverHighlight [hoverColor]="'pink'" class="product-list-item" [ngStyle]="{'background-color': (index ?? 0)% 2 === 0 ? 'white' : 'lightgrey'}" (click)="onSelectProduct()">
-  <div class="content-left">
-    <span
+<mat-card>
+    <mat-card-header>  <span
       [appShowDetailsOnHover]="'ID: ' + product.productId + ', Description: ' + product.description"
       style="text-decoration: underline; color: blue; cursor: pointer;"
     >
-      <h2>{{ product?.name | uppercase}}</h2>
+    <mat-card-title>  <h2>{{ product?.name | uppercase}}</h2></mat-card-title>
   </span>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list>
 
-    <p>{{ product?.description  }}</p>
-    <p>Price: {{ product.price| currency: 'CAD' }}</p>
-    <p>model : brand :-> {{product| modelCombine}}</p>
+
+
+
+        <mat-list-item></mat-list-item>
+
+      <mat-list-item>{{ product?.description  }}</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><p>Price: {{ product.price| currency: 'CAD' }}</p> </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item><p>model : brand :-> {{product| modelCombine}}</p></mat-list-item>
+        <mat-divider></mat-divider>
     <p *ngIf="product?.stock">Stock: {{ product?.stock | percent }}  of the required inventory</p>
-    <p>bonus stock: <span [innerHTML]="product | colorText"></span></p>
+        <mat-divider></mat-divider>
+        <p>bonus stock: <span [innerHTML]="product | colorText"></span></p>
 
-  </div>
+      </mat-list>
   <div class="content-right">
-    <img [src]="product.url" alt="{{ product?.name }}" class="product-image">
+    <img mat-card-image [src]="product.url" alt="{{ product?.name }}" class="product-image">
   </div>
+  </mat-card-content>
+</mat-card>
 </div>
-
 

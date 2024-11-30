@@ -1,14 +1,17 @@
-<div *ngFor="let product of products; let i = index" class="contentList">
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
+<mat-card class="example-card" appearance="outlined">
+  <div *ngFor="let product of products; let i = index" class="contentList">
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <app-product-list-item
+      [product]="product"
+      [index]="i">
+    </app-product-list-item>
+
+    <button mat-button class="edit-button" matTooltip="Edit this product" (click)="onEdit(product.productId)">
+      Edit
+    </button>
+    <button mat-fab extended class="delete-button" matTooltip="Delete this product" (click)="onDelete(product.productId)">
+       Delete<mat-icon>favorite</mat-icon>
+    </button>
   </div>
-
-  <app-product-list-item
-    [product]="product"
-    [index]="i">
-
-  </app-product-list-item>
-  <button (click)="onEdit(product.productId)"  appHoverHighlight [hoverColor]="'orange'">Edit</button>
-
-  <button (click)="onDelete(product.productId)"  appHoverHighlight [hoverColor]="'orange'">Delete</button>
-</div>
+</mat-card>

@@ -8,15 +8,23 @@ import {Router} from "@angular/router";
 import { HttpClientModule } from '@angular/common/http';
 import {HoverHighlightDirective} from "../hover-highlight.directive";
 
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatIconModule} from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatTooltip} from "@angular/material/tooltip";
+
+
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
   imports: [
+    MatCardModule, MatButtonModule, MatIconModule, MatProgressBarModule,
     ProductListItemComponent,
     NgForOf,
     NgIf,
-    HoverHighlightDirective
+    HoverHighlightDirective, MatTooltip
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
