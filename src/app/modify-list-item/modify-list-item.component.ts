@@ -13,20 +13,21 @@ import {MatButton} from "@angular/material/button";
 import {MatCardModule} from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {MatTooltip} from "@angular/material/tooltip";
 
 @Component({
   selector: 'app-modify-list-item',
   standalone: true,
   imports: [
-    ReactiveFormsModule,MatCardModule,
+    ReactiveFormsModule, MatCardModule,
     NgForOf,
     NgIf,
     HighlightOnFocusDirective,
     MatCardHeader,
     MatFormField,
     MatInput,
-    MatButton ,MatFormFieldModule,
-    MatInputModule
+    MatButton, MatFormFieldModule,
+    MatInputModule, MatTooltip
   ],
   templateUrl: './modify-list-item.component.html',
   styleUrls: ['./modify-list-item.component.css']

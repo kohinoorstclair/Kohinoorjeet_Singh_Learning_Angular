@@ -94,3 +94,12 @@ button[mat-raised-button]:disabled {
     font-size: 14px;
   }
 }
+
+::ng-deep .mat-tooltip {
+  margin-bottom: 8px;
+  transform: translateX(-50%);
+}
+
+::ng-deep .mat-tooltip.mat-tooltip-above {
+  transform: translateX(-50%) translateY(-8px);
+}

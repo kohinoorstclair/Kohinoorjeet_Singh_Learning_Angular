@@ -8,7 +8,7 @@
       <mat-card-title>{{ isEditMode ? 'Edit Product' : 'Create Product' }}</mat-card-title>
     </mat-card-header>
 
-<br>
+    <br>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <br>
       <mat-form-field appearance="fill" class="form-group">
@@ -22,10 +22,13 @@
           [readonly]="isEditMode"
           appHighlightOnFocus
           [focusColor]="'white'"
+          matTooltip="Enter the name of the product. E.g., 'Apple iPhone 12'."
+          matTooltipPosition="above"
+        aria-label="Product Name"
         />
       </mat-form-field>
 
-      <mat-form-field  class="form-group">
+      <mat-form-field class="form-group">
         <mat-label>Price</mat-label>
         <input
           matInput
@@ -34,6 +37,9 @@
           type="number"
           appHighlightOnFocus
           [focusColor]="'lightblue'"
+          matTooltip="Enter the product price in USD. E.g., '599.99'."
+          matTooltipPosition="above"
+        aria-label="Price"
         />
       </mat-form-field>
 
@@ -46,6 +52,9 @@
           type="text"
           appHighlightOnFocus
           [focusColor]="'lightblue'"
+          matTooltip="Enter the brand name of the product. E.g., 'Apple', 'Samsung'."
+          matTooltipPosition="above"
+        aria-label="Brand"
         />
       </mat-form-field>
 
@@ -56,6 +65,9 @@
           id="description"
           formControlName="description"
           rows="3"
+          matTooltip="Provide a brief description of the product. E.g., 'Latest smartphone with 5G support'."
+          matTooltipPosition="above"
+        aria-label="Description"
         ></textarea>
       </mat-form-field>
 
@@ -68,6 +80,9 @@
           type="number"
           appHighlightOnFocus
           [focusColor]="'lightblue'"
+          matTooltip="Enter the available quantity of this product in stock."
+          matTooltipPosition="above"
+        aria-label="Stock"
         />
       </mat-form-field>
 
