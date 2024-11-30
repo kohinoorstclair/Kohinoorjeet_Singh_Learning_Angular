@@ -1,22 +1,25 @@
 <html>
 <head>
   <title>{{title}}</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-<nav>
-  <ul>
-    <li><a routerLink = 'Products'>Home</a></li>
-    <li><a routerLink ='modify-product'>Modify Product</a></li>
-    <li><a routerLink ='page-not-found'>page not found</a></li>
-  </ul>
-</nav>
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <nav>
+    <a mat-button routerLink="Products">Home</a>
+    <a mat-button routerLink="modify-product">Modify Product</a>
+    <a mat-button routerLink="page-not-found">Page Not Found</a>
+  </nav>
+</mat-toolbar>
+
 <div class="main">
-<h1>electronic products</h1>
-<h2>{{about}}</h2>
-
-
+  <h1>Electronic Products</h1>
+  <h2>{{about}}</h2>
+  <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+
 </body>
 </html>

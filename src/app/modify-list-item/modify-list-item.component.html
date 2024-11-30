@@ -7,9 +7,12 @@
     <mat-card-header>
       <mat-card-title>{{ isEditMode ? 'Edit Product' : 'Create Product' }}</mat-card-title>
     </mat-card-header>
+
 <br>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <br>
       <mat-form-field appearance="fill" class="form-group">
+        <br>
         <mat-label>Product Name</mat-label>
         <input
           matInput

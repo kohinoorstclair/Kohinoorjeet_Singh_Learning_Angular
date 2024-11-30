@@ -2,6 +2,9 @@
   padding: 10px;
   margin: 10px;
 }
+mat-card{
+  align-self: center;
+}
 
 .example-card {
   max-width: 800px;
